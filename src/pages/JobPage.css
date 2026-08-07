@@ -1,0 +1,103 @@
+/* ===== JOB PAGE ===== */
+.job-page-header {
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.job-page-header h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: -0.8px;
+  background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.job-page-header h1::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 32px;
+  background: var(--primary-gradient);
+  border-radius: 4px;
+}
+
+.job-page-header p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 24px;
+}
+
+.job-page-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 16px 20px;
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+}
+
+.btn-add-job {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  padding: 11px 22px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-add-job:hover {
+  background: var(--primary-gradient-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-add-job:active {
+  transform: translateY(0);
+}
+
+.btn-add-job svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.25s ease;
+}
+
+.btn-add-job:hover svg {
+  transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+  .job-page-toolbar {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .btn-add-job {
+    justify-content: center;
+    width: 100%;
+  }
+}
+

@@ -1,0 +1,175 @@
+/* ===== JOB TABLE ===== */
+.job-table-wrapper {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+.job-table-wrapper:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.job-table-wrapper h2 {
+  display: none;
+}
+
+.job-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  text-align: left;
+}
+
+.job-table thead th {
+  background: #f8fafc;
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 16px 20px;
+  border-bottom: 1.5px solid var(--border);
+  white-space: nowrap;
+}
+
+.job-table thead th:first-child {
+  width: 60px;
+  text-align: center;
+}
+
+.job-table thead th:last-child {
+  text-align: center;
+  width: 100px;
+}
+
+.job-table tbody tr {
+  transition: var(--transition);
+  border-bottom: 1px solid var(--border);
+}
+
+.job-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.job-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.03);
+}
+
+.job-table tbody td {
+  padding: 18px 20px;
+  color: var(--text);
+  vertical-align: middle;
+}
+
+.job-table tbody td:first-child {
+  text-align: center;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.job-table .job-title {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.job-table .job-company {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.job-table .job-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.job-table .job-salary {
+  font-weight: 700;
+  color: var(--success);
+  font-size: 14px;
+}
+
+.job-table .job-type {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.job-type-full-time {
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.job-type-part-time {
+  background: var(--warning-light);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.job-type-remote {
+  background: var(--success-light);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+/* Action buttons */
+.actions-cell {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-action {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  color: var(--text-secondary);
+}
+
+.btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-action.btn-edit:hover {
+  color: var(--primary);
+  border-color: var(--border-focus);
+  background: var(--primary-light);
+}
+
+.btn-action.btn-delete:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+  background: var(--danger-light);
+}
+
+/* Empty state */
+.job-table-empty {
+  text-align: center;
+  padding: 64px 20px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 500;
+}
+
