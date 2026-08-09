@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import JobTable from "../components/JobTable";
 import JobForm from "../components/JobForm";
 import JobStats from "../components/JobStats";
+import useLocalStorage from "../hooks/useLocalStorage";
 import "./JobPage.css";
 
 const initialJobs = [
@@ -17,25 +18,11 @@ const initialJobs = [
 ];
 
 function JobPage() {
-  const [jobs, setJobs] = useState(() => {
-    const savedJobs = localStorage.getItem("jobs");
-    if (savedJobs) {
-      try {
-        return JSON.parse(savedJobs);
-      } catch (error) {
-        console.error("Lỗi đọc dữ liệu từ localStorage:", error);
-      }
-    }
-    return initialJobs;
-  });
+  const [jobs, setJobs] = useLocalStorage("jobs", initialJobs);
 
   const [searchKeyword, setSearchKeyword] = useState("");
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingJob, setEditingJob] = useState(null);
-
-  useEffect(() => {
-    localStorage.setItem("jobs", JSON.stringify(jobs));
-  }, [jobs]);
 
   const handleDeleteJob = (id) => {
     if (window.confirm("Bạn có chắc chắn muốn xóa công việc này không?")) {
@@ -83,6 +70,7 @@ function JobPage() {
       <JobStats jobs={jobs} />
 
       <div className="job-page-toolbar">
+        <SearchBar onSearch={setSearchKeyword} />
         <button className="btn-add-job" onClick={handleOpenAddForm}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <line x1="12" y1="5" x2="12" y2="19" />
@@ -90,7 +78,6 @@ function JobPage() {
           </svg>
           Thêm việc làm
         </button>
-        <SearchBar onSearch={setSearchKeyword} />
       </div>
 
       <JobTable jobs={filteredJobs} onDelete={handleDeleteJob} onEdit={handleOpenEditForm} />
