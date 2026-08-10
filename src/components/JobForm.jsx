@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { JOB_TYPES } from "../constants/jobTypes";
 import "./JobForm.css";
 
 function JobForm({ onClose, onSave, editingJob = null }) {
@@ -66,9 +67,11 @@ function JobForm({ onClose, onSave, editingJob = null }) {
           <div className="form-group">
             <label>Loại hình</label>
             <select name="type" value={formData.type} onChange={handleChange}>
-              <option value="Full-time">Full-time</option>
-              <option value="Part-time">Part-time</option>
-              <option value="Remote">Remote</option>
+              {JOB_TYPES.map((item) => (
+                <option key={item.value} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
             </select>
           </div>
 
