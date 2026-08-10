@@ -4,6 +4,7 @@ import JobTable from "../components/JobTable";
 import JobForm from "../components/JobForm";
 import JobStats from "../components/JobStats";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { filterJobsByKeyword } from "../utils/jobFilters";
 import "./JobPage.css";
 
 const initialJobs = [
@@ -55,13 +56,7 @@ function JobPage() {
     handleCloseForm();
   };
 
-  const filteredJobs = jobs.filter((job) =>{
-    return (
-    job.title.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-    job.company.toLowerCase().includes(searchKeyword.toLowerCase())
-    );
-  }
-  );
+  const filteredJobs = filterJobsByKeyword(jobs, searchKeyword);
 
   return (
     <div>
