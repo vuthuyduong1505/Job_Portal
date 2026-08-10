@@ -1,10 +1,10 @@
 import { useState } from "react";
-import SearchBar from "../components/SearchBar";
+import JobFilterBar from "../components/JobFilterBar";
 import JobTable from "../components/JobTable";
 import JobForm from "../components/JobForm";
 import JobStats from "../components/JobStats";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { filterJobsByKeyword } from "../utils/jobFilters";
+import { applyJobFilters } from "../utils/jobFilters";
 import "./JobPage.css";
 
 const initialJobs = [
@@ -21,9 +21,21 @@ const initialJobs = [
 function JobPage() {
   const [jobs, setJobs] = useLocalStorage("jobs", initialJobs);
 
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const [filters, setFilters] = useState({
+    keyword: "",
+    type: "all",
+    location: "all",
+  });
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingJob, setEditingJob] = useState(null);
+
+  const handleResetFilters = () => {
+    setFilters({
+      keyword: "",
+      type: "all",
+      location: "all",
+    });
+  };
 
   const handleDeleteJob = (id) => {
     if (window.confirm("Bạn có chắc chắn muốn xóa công việc này không?")) {
@@ -56,7 +68,7 @@ function JobPage() {
     handleCloseForm();
   };
 
-  const filteredJobs = filterJobsByKeyword(jobs, searchKeyword);
+  const filteredJobs = applyJobFilters(jobs, filters);
 
   return (
     <div>
@@ -68,8 +80,11 @@ function JobPage() {
       <JobStats jobs={jobs} />
 
       <div className="job-page-toolbar">
-        <SearchBar onSearch={setSearchKeyword} 
-        searchKeyword={searchKeyword}/>
+        <JobFilterBar
+          filters={filters}
+          onFilterChange={setFilters}
+          onResetFilters={handleResetFilters}
+        />
         <button className="btn-add-job" onClick={handleOpenAddForm}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <line x1="12" y1="5" x2="12" y2="19" />
@@ -79,7 +94,16 @@ function JobPage() {
         </button>
       </div>
 
-      <JobTable jobs={filteredJobs} onDelete={handleDeleteJob} onEdit={handleOpenEditForm} />
+      <div className="job-result-count" style={{ marginBottom: "16px", color: "var(--text-secondary)", fontSize: "14px", fontWeight: "500" }}>
+        Tìm thấy <strong>{filteredJobs.length}</strong> việc làm phù hợp (trên tổng số {jobs.length})
+      </div>
+
+      <JobTable
+        jobs={filteredJobs}
+        totalJobsCount={jobs.length}
+        onDelete={handleDeleteJob}
+        onEdit={handleOpenEditForm}
+      />
 
       {isFormOpen && (
         <JobForm

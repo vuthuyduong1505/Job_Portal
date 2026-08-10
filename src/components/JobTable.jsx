@@ -1,6 +1,6 @@
 import "./JobTable.css";
 
-function JobTable({ jobs, onDelete, onEdit }) {
+function JobTable({ jobs, onDelete, onEdit, totalJobsCount = 0 }) {
 
   const getTypeClass = (type) => {
     switch (type) {
@@ -15,7 +15,9 @@ function JobTable({ jobs, onDelete, onEdit }) {
     <div className="job-table-wrapper">
       {jobs.length === 0 ? (
         <div className="job-table-empty">
-          Không tìm thấy công việc nào.
+          {totalJobsCount === 0
+            ? "Chưa có công việc nào trong hệ thống. Bấm \"Thêm việc làm\" để tạo mới!"
+            : "Không tìm thấy công việc nào phù hợp."}
         </div>
       ) : (
         <table className="job-table">
