@@ -126,3 +126,16 @@
   transform: translateY(0);
 }
 
+/* ===== VALIDATION ERROR STYLES ===== */
+.input-error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12) !important;
+}
+
+.error-message {
+  display: block;
+  color: #ef4444;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 4px;
+}

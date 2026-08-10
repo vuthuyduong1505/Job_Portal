@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { JOB_TYPES } from "../constants/jobTypes";
+import { validateJob } from "../utils/jobValidation";
 import "./JobForm.css";
 
 function JobForm({ onClose, onSave, editingJob = null }) {
@@ -11,6 +12,9 @@ function JobForm({ onClose, onSave, editingJob = null }) {
     salary: "",
     type: "Full-time",
   });
+
+  // TASK 5.2 — State lưu lỗi từng field
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (editingJob) {
@@ -24,16 +28,32 @@ function JobForm({ onClose, onSave, editingJob = null }) {
     }
   }, [editingJob]);
 
+  // TASK 5.5 — Xóa lỗi realtime khi user sửa input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
+
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: "",
+      });
+    }
   };
 
+  // TASK 5.3 — Validate khi submit
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const newErrors = validateJob(formData);
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
 
     const jobData = {
       id: editingJob ? editingJob.id : Date.now(),
@@ -50,19 +70,51 @@ function JobForm({ onClose, onSave, editingJob = null }) {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Vị trí</label>
-            <input required type="text" name="title" placeholder="VD: Frontend Developer" value={formData.title} onChange={handleChange} />
+            <input
+              type="text"
+              name="title"
+              placeholder="VD: Frontend Developer"
+              value={formData.title}
+              onChange={handleChange}
+              className={errors.title ? "input-error" : ""}
+            />
+            {errors.title && <span className="error-message">{errors.title}</span>}
           </div>
           <div className="form-group">
             <label>Công ty</label>
-            <input required type="text" name="company" placeholder="VD: FPT Software" value={formData.company} onChange={handleChange} />
+            <input
+              type="text"
+              name="company"
+              placeholder="VD: FPT Software"
+              value={formData.company}
+              onChange={handleChange}
+              className={errors.company ? "input-error" : ""}
+            />
+            {errors.company && <span className="error-message">{errors.company}</span>}
           </div>
           <div className="form-group">
             <label>Địa điểm</label>
-            <input required type="text" name="location" placeholder="VD: Hà Nội" value={formData.location} onChange={handleChange} />
+            <input
+              type="text"
+              name="location"
+              placeholder="VD: Hà Nội"
+              value={formData.location}
+              onChange={handleChange}
+              className={errors.location ? "input-error" : ""}
+            />
+            {errors.location && <span className="error-message">{errors.location}</span>}
           </div>
           <div className="form-group">
             <label>Mức lương</label>
-            <input required type="text" name="salary" placeholder="VD: 15-25 triệu" value={formData.salary} onChange={handleChange} />
+            <input
+              type="text"
+              name="salary"
+              placeholder="VD: 15000000"
+              value={formData.salary}
+              onChange={handleChange}
+              className={errors.salary ? "input-error" : ""}
+            />
+            {errors.salary && <span className="error-message">{errors.salary}</span>}
           </div>
           <div className="form-group">
             <label>Loại hình</label>
