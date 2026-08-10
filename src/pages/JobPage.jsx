@@ -55,9 +55,12 @@ function JobPage() {
     handleCloseForm();
   };
 
-  const filteredJobs = jobs.filter((job) =>
+  const filteredJobs = jobs.filter((job) =>{
+    return (
     job.title.toLowerCase().includes(searchKeyword.toLowerCase()) ||
     job.company.toLowerCase().includes(searchKeyword.toLowerCase())
+    );
+  }
   );
 
   return (
@@ -70,7 +73,8 @@ function JobPage() {
       <JobStats jobs={jobs} />
 
       <div className="job-page-toolbar">
-        <SearchBar onSearch={setSearchKeyword} />
+        <SearchBar onSearch={setSearchKeyword} 
+        searchKeyword={searchKeyword}/>
         <button className="btn-add-job" onClick={handleOpenAddForm}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <line x1="12" y1="5" x2="12" y2="19" />
