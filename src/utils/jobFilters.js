@@ -1,10 +1,3 @@
-/**
- * Lọc danh sách việc làm theo từ khóa tìm kiếm (tiêu đề công việc hoặc tên công ty).
- * 
- * @param {Array} jobs - Danh sách công việc gốc
- * @param {string} keyword - Từ khóa tìm kiếm từ ô input
- * @returns {Array} Mảng công việc đã qua lọc
- */
 export function filterJobsByKeyword(jobs = [], keyword = "") {
   if (!keyword || !keyword.trim()) {
     return jobs;
@@ -20,13 +13,7 @@ export function filterJobsByKeyword(jobs = [], keyword = "") {
   });
 }
 
-/**
- * Lọc danh sách việc làm kết hợp nhiều tiêu chí (Từ khóa, Loại hình, Địa điểm) - AND Logic
- * 
- * @param {Array} jobs - Danh sách công việc gốc
- * @param {Object} filters - Đối tượng chứa tham số lọc { keyword, type, location }
- * @returns {Array} Mảng công việc thỏa mãn tất cả tiêu chí
- */
+
 export function applyJobFilters(jobs = [], filters = {}) {
   const { keyword = "", type = "all", location = "all" } = filters;
   const lowerKeyword = keyword.toLowerCase().trim();

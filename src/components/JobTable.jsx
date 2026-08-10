@@ -1,6 +1,6 @@
 import "./JobTable.css";
 
-function JobTable({ jobs, onDelete, onEdit, totalJobsCount = 0 }) {
+function JobTable({ jobs, onDelete, onEdit, totalJobsCount = 0, currentPage = 1, itemsPerPage = 10 }) {
 
   const getTypeClass = (type) => {
     switch (type) {
@@ -35,7 +35,7 @@ function JobTable({ jobs, onDelete, onEdit, totalJobsCount = 0 }) {
           <tbody>
             {jobs.map((job, index) => (
               <tr key={job.id}>
-                <td>{index + 1}</td>
+                <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                 <td className="job-title">{job.title}</td>
                 <td className="job-company">{job.company}</td>
                 <td>
