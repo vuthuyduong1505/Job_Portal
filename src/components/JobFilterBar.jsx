@@ -27,7 +27,7 @@ function JobFilterBar({ filters, onFilterChange, onResetFilters }) {
         />
       </div>
 
-      <div className="filter-item">
+      <div className="filter-item filter-select">
         <select name="type" value={filters.type || "all"} onChange={handleChange}>
           <option value="all">Tất cả loại hình</option>
           {JOB_TYPES.map((item) => (
@@ -38,7 +38,7 @@ function JobFilterBar({ filters, onFilterChange, onResetFilters }) {
         </select>
       </div>
 
-      <div className="filter-item">
+      <div className="filter-item filter-select">
         <select name="location" value={filters.location || "all"} onChange={handleChange}>
           <option value="all">Tất cả địa điểm</option>
           {LOCATIONS.map((loc) => (

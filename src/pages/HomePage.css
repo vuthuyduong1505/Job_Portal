@@ -1,0 +1,62 @@
+/* ===== HOME PAGE STYLES ===== */
+.home-page {
+  padding: 20px 0 40px;
+}
+
+.home-hero {
+  text-align: center;
+  padding: 48px 24px;
+  background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+  border-radius: var(--radius-lg, 16px);
+  border: 1px solid var(--border, #e2e8f0);
+  margin-bottom: 36px;
+}
+
+.home-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--text, #0f172a);
+  margin-bottom: 12px;
+  letter-spacing: -0.8px;
+}
+
+.home-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary, #64748b);
+  max-width: 600px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+
+.home-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary-gradient, linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%));
+  color: white;
+  padding: 12px 28px;
+  border-radius: var(--radius, 8px);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.btn-hero-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text, #0f172a);
+  margin-bottom: 16px;
+}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./JobTable.css";
 
 function JobTable({ jobs, onDelete, onEdit, totalJobsCount = 0, currentPage = 1, itemsPerPage = 10 }) {
@@ -36,7 +37,11 @@ function JobTable({ jobs, onDelete, onEdit, totalJobsCount = 0, currentPage = 1,
             {jobs.map((job, index) => (
               <tr key={job.id}>
                 <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
-                <td className="job-title">{job.title}</td>
+                <td className="job-title">
+                  <Link to={`/jobs/${job.id}`} className="job-title-link">
+                    {job.title}
+                  </Link>
+                </td>
                 <td className="job-company">{job.company}</td>
                 <td>
                   <span className="job-location">📍 {job.location}</span>

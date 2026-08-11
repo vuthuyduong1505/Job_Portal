@@ -13,7 +13,7 @@ function JobForm({ onClose, onSave, editingJob = null }) {
     type: "Full-time",
   });
 
-  // TASK 5.2 — State lưu lỗi từng field
+
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function JobForm({ onClose, onSave, editingJob = null }) {
     }
   }, [editingJob]);
 
-  // TASK 5.5 — Xóa lỗi realtime khi user sửa input
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({

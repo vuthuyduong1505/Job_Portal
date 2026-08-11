@@ -106,8 +106,8 @@ function JobPage() {
   return (
     <div>
       <div className="job-page-header">
-        <h1>Job Portal</h1>
-        <p>Quản lý danh sách việc làm</p>
+        <h2>Danh Sách Việc Làm</h2>
+        <p>Quản lý và tìm kiếm các cơ hội nghề nghiệp hàng đầu</p>
       </div>
 
       <JobStats jobs={jobs} />
